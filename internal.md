@@ -8,12 +8,12 @@ to the endpoints API.
 Use hierarchical RBAC; groups can contain groups for permissions to be inherited.
 There is a system "anonymous" group that all groups inherit from but have no permissions.
 
-/internal/groups
-----------------
+### /internal/groups
 
 List all groups and their members.
 This interface is also available in the Padlock interface.
 
+```
 {
 	'groups': [
 		{
@@ -43,65 +43,70 @@ This interface is also available in the Padlock interface.
 		'anonymous': 'anonymous',
 	]
 }
+```
 
-/internal/groups/update
------------------------
+### /internal/groups/update
 
 Add or update a group.
 This interface is also available in the Padlock interface.
 
 Parameters:
 
+```
 {
 	'group': 'friend meow',		# unique ID
 	'parent': 'friend',
 	'types': []
 }
+```
 
-/internal/groups/delete
------------------------
+### /internal/groups/delete
 
 Delete a group and all children groups.
 This interface is also available in the Padlock interface
 
 Parameters:
 
+```
 {
 	'group': 'friend meow',		# unique ID
 	'newParent': 'anonymous',	# set all childen group parents to this group instead
 }
+```
 
-/internal/groups/membership
----------------------------
+### /internal/groups/membership
 
 Add or update a group membership.
 This interface is also available in the Padlock interface.
 
 Parameters:
 
+```
 {
 	'identity': 'http://alice.org',
 	'group': 'friend alice'
 }
+```
 
-/internal/request
------------------
+### /internal/request
 
 Request a pairing with someone else.
 This interface is also available in the Padlock interface so maybe this method can be removed.
 
 Parameters:
 
+```
 {
 	'to': 'http://dave.org',
 	'group': 'friend dave'				# the group that the identity will be added to if paired
 }
+```
 
-/internal/requests
-------------------
+### /internal/requests
 
 Get all pending pairing requests.
 
+```
 {
 	'requests': [
 		{
@@ -110,16 +115,18 @@ Get all pending pairing requests.
 		}
 	]
 }
+```
 
-/internal/unpair
-----------------
+### /internal/unpair
 
 Unpair an identity.
 This interface is also available in the Padlock interface so maybe this method can be removed.
 
+```
 {
 	'to': 'http://bob.org'
 }
+```
 
 Internal Messaging
 ==================
@@ -128,11 +135,11 @@ Services can post messages internally. This should not be accessible to the web 
 the protocol does not support authentication for internal methods; another service should
 instead expose the services through some form of authentication.
 
-/internal/post
---------------
+### /internal/post
 
 Post a message.
 
+```
 {
 	'messages': [
 		{
@@ -149,10 +156,13 @@ Post a message.
 		},
 	]
 }
+```
 
 Response:
 
+```
 {
 	'success': true,
 	'pending': 12		// the total number of messages * identities that will be sent
 }
+```

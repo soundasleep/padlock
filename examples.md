@@ -3,8 +3,7 @@ Examples
 
 This covers a simple scenario of how two identities pair, register for new messages, and get pushed new messages.
 
-1. Pairing
-----------
+### 1. Pairing
 
 Alice: http://alice.org/internal/groups/update (group: friend bob, parent: friends, types: [])		# create new group
 
